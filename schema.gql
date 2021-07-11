@@ -1,0 +1,46 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Post {
+  id: String!
+  userId: String!
+  content: String!
+}
+
+type User {
+  id: String!
+  email: String!
+  userName: String!
+  firstName: String!
+  lastName: String!
+  followers: [User!]
+  following: [User!]
+  posts: [Post!]
+}
+
+type Follower {
+  id: String!
+  userId: String!
+  follows: String!
+}
+
+type Query {
+  me: User!
+  post(id: String!): Post!
+}
+
+type Mutation {
+  login(hashedPassword: String!, userName: String!): String!
+  register(email: String!, lastName: String!, firstName: String!, hashedPassword: String!, userName: String!): User
+  post(content: String!): Post!
+  editPost(content: String!, id: String!): Post!
+  deletePost(id: String!): String!
+  follow(user: String!): Follower!
+  unfollow(user: String!): String!
+}
+
+type Subscription {
+  postAdded(user: String!): Post!
+  notifyOfFollower: User!
+}
